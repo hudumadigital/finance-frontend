@@ -1,1 +1,89 @@
-<p>register works!</p>
+<div class="container d-flex flex-column">
+  <div class="row align-items-center justify-content-center g-0 min-vh-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
+      <div class="card smooth-shadow-md">
+        <div class="card-body p-6">
+
+          <div class="mb-4">
+            <h3 class="mb-2">REGISTRATION FORM</h3>
+            <p class="mb-6">Please enter your user information.</p>
+          </div>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input
+                formControlName="fullName"
+                [ngClass]="{'is-invalid': isSubmitted && f.fullName.errors}"
+                type="text" id="fullName" class="form-control" name="fullName" placeholder="Full Name" required>
+              <div *ngIf="isSubmitted && f.fullName.errors" class="invalid-feedback">
+                <span *ngIf="f.fullName.errors.required">Full Name is required</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                formControlName="email"
+                [ngClass]="{'is-invalid': isSubmitted && f.email.errors}"
+                type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
+              <div *ngIf="isSubmitted && f.email.errors" class="invalid-feedback">
+                <span *ngIf="f.email.errors.required">Email is required</span>
+                <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
+              </div>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="password" class="form-label">Password</label>
+              <input
+                formControlName="password"
+                [ngClass]="{'is-invalid': isSubmitted && f.password.errors}"
+                [attr.type]="passwordVisible == false ? 'password' : 'text'"
+                id="password" class="form-control" name="password" placeholder="Password" required>
+              <div *ngIf="isSubmitted && f.password.errors" class="invalid-feedback">
+                <span *ngIf="f.password.errors.required">Password is required</span>
+                <span *ngIf="f.password.errors.min">Password must be at least 8 characters</span>
+              </div>
+              <a class="eye" (click)="togglePasswordVisibility()" [hidden]="isSubmitted && f.password.errors">
+                <i class="fs-5 bi-eye" *ngIf="passwordVisible"></i>
+                <i class="fs-5 bi-eye-slash" *ngIf="!passwordVisible"></i>
+              </a>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="password_confirmation" class="form-label">Confirm Password</label>
+              <input
+                formControlName="passwordConfirm"
+                [ngClass]="{'is-invalid': isSubmitted && f.passwordConfirm.errors}"
+                [attr.type]="passwordConfirmVisible == false ? 'password' : 'text'"
+                id="password_confirmation" class="form-control" name="password_confirmation"
+                placeholder="Confirm Password" required>
+              <div *ngIf="isSubmitted && f.passwordConfirm.errors" class="invalid-feedback">
+                <span *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</span>
+                <span *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</span>
+              </div>
+              <a class="eye" (click)="togglePasswordConfirmVisibility()" [hidden]="isSubmitted && f.passwordConfirm.errors">
+                <i class="fs-5 bi-eye" *ngIf="passwordConfirmVisible"></i>
+                <i class="fs-5 bi-eye-slash" *ngIf="!passwordConfirmVisible"></i>
+              </a>
+            </div>
+
+            <div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Create Free Account</button>
+              </div>
+
+              <div class="d-md-flex justify-content-between mt-4">
+                <div class="mb-2 mb-md-0">
+                  <a routerLink="/login">Already member? Login</a>
+                </div>
+                <div>
+                  <a routerLink="/forgot-password" class="text-inherit">Forgot your password?</a>
+                </div>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
