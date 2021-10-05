@@ -39,7 +39,16 @@
 
             <div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button
+                  *ngIf="!loadingState"
+                  type="submit" class="btn btn-primary">Login</button>
+
+                <button
+                  *ngIf="loadingState"
+                  class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Logging In...
+                </button>
               </div>
 
               <div class="d-md-flex justify-content-between mt-4">

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../helpers/must-match.validator";
+import {Customer} from "../../models/customer.model";
+import {UiService} from "../../services/ui.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -9,13 +12,17 @@ import {MustMatch} from "../../helpers/must-match.validator";
 })
 export class LoginComponent implements OnInit {
 
+  loadingState = false;
+
   passwordVisible = false;
 
   loginForm!: FormGroup;
   isSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,) { }
+    private formBuilder: FormBuilder,
+    private ui: UiService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -39,7 +46,19 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.loginForm);
+    this.ui.loadingStateChanged
+      .subscribe(
+        loadState => {
+          this.loadingState = loadState;
+        }
+      );
+
+    const customer: Customer = {
+      'email': this.loginForm.value.email,
+      'password': this.loginForm.value.password
+    }
+
+    this.auth.loginCustomer(customer);
 
   }
 

@@ -1,6 +1,6 @@
 export interface Customer {
-  fullName: string;
-  mobile: number;
+  fullName?: string;
+  mobile?: number;
   email: string;
   password: string
 }
