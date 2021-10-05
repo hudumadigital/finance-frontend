@@ -25,7 +25,6 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     FlexLayoutModule,
     AccountsModule,
-    MaterialModule,
     HttpClientModule,
     SecureModule
   ],

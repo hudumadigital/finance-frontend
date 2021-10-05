@@ -1,0 +1,37 @@
+<mat-sidenav-container autosize class="sidenav-container" fxFlexFill>
+
+  <mat-sidenav fixedInViewport="true" fxLayout="column"
+               [attr.role]="(isHandset$ | async) && (isTablet$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async)  ? 'over' : 'side' && (isTablet$ | async) ? 'side' : 'side'"
+               [opened]="(isHandset$ | async) === false"
+               position="start" #sidenav>
+    <div class="for-md-lg">
+      <app-secure-sidebar></app-secure-sidebar>
+    </div>
+    <div class="for-sm">
+<!--      <app-secure-sidebar (closeSideNav)="sidenav.close()"></app-secure-sidebar>-->
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxFlex fxLayout="column">
+    <mat-toolbar class="smooth-shadow-sm">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <i class="fs-4 bi-list"></i>
+      </button>
+      <div  fxFlex fxLayoutAlign="flex-end">
+        <app-secure-topbar></app-secure-topbar>
+      </div>
+    </mat-toolbar>
+
+    <div class="container py-3">
+      <div class="content">
+        <div class="row" fxLayout="column" fxLayoutAlign="center center">
+          <div class="col-12 col-lg-12 pb-5">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

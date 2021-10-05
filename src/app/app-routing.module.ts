@@ -5,6 +5,7 @@ import {RegisterComponent} from "./accounts/register/register.component";
 import {LoginComponent} from "./accounts/login/login.component";
 import {ForgotPasswordComponent} from "./accounts/forgot-password/forgot-password.component";
 import {DashboardComponent} from "./secure/dashboard/dashboard.component";
+import {SecureComponent} from "./secure/secure.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, data: {title: 'Login'}},
@@ -12,7 +13,12 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent, data: {title: 'Forgot Password'}},
 
   // Secure links
-  {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+  {path: 'customer', component: SecureComponent,
+    children: [
+      {path: '', redirectTo: '/customer/dashboard', pathMatch: 'full'},
+      {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+    ]
+  },
 ];
 
 @NgModule({
