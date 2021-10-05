@@ -59,7 +59,8 @@
                 <span *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</span>
                 <span *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</span>
               </div>
-              <a class="eye" (click)="togglePasswordConfirmVisibility()" [hidden]="isSubmitted && f.passwordConfirm.errors">
+              <a class="eye" (click)="togglePasswordConfirmVisibility()"
+                 [hidden]="isSubmitted && f.passwordConfirm.errors">
                 <i class="fs-5 bi-eye" *ngIf="passwordConfirmVisible"></i>
                 <i class="fs-5 bi-eye-slash" *ngIf="!passwordConfirmVisible"></i>
               </a>
@@ -72,10 +73,10 @@
 
               <div class="d-md-flex justify-content-between mt-4">
                 <div class="mb-2 mb-md-0">
-                  <a routerLink="/login">Already member? Login</a>
+                  <a routerLink="/login">Already a member? Login</a>
                 </div>
                 <div>
-                  <a routerLink="/forgot-password" class="text-inherit">Forgot your password?</a>
+<!--                  <a routerLink="/forgot-password" class="text-inherit">Forgot your password?</a>-->
                 </div>
               </div>
 
