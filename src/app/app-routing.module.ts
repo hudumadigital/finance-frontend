@@ -2,9 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {RegisterComponent} from "./accounts/register/register.component";
+import {LoginComponent} from "./accounts/login/login.component";
+import {ForgotPasswordComponent} from "./accounts/forgot-password/forgot-password.component";
+import {DashboardComponent} from "./secure/dashboard/dashboard.component";
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent}
+  {path: 'login', component: LoginComponent, data: {title: 'Login'}},
+  {path: 'register', component: RegisterComponent, data: {title: 'Register'}},
+  {path: 'forgot-password', component: ForgotPasswordComponent, data: {title: 'Forgot Password'}},
+
+  // Secure links
+  {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
 ];
 
 @NgModule({
