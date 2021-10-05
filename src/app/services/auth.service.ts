@@ -65,7 +65,8 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
 
           if (result.isLoggedIn) {
-            this.router.navigate(['dashboard']).then(r => {
+            this.router.navigate(['../customer']).then(r => {
+              localStorage.setItem('customerData', JSON.stringify(result));
             });
             return;
           }
