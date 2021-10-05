@@ -6,11 +6,14 @@ import { HttpClient } from "@angular/common/http";
 
 import { Customer } from "../models/customer.model";
 import { Router } from "@angular/router";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  customerSubject = new BehaviorSubject({});
 
   constructor(
     private path: PathService,
@@ -65,7 +68,9 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
 
           if (result.isLoggedIn) {
-            this.router.navigate(['customer','dashboard']).then(r => {});
+            this.router.navigate(['customer','dashboard']).then(r => {
+              localStorage.setItem('customer', JSON.stringify(result));
+            });
             return;
           }
 

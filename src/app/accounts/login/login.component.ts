@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../helpers/must-match.validator";
 import {Customer} from "../../models/customer.model";
 import {UiService} from "../../services/ui.service";
 import {AuthService} from "../../services/auth.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loadingState = false;
 
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   isSubmitted = false;
+
+  subscriptions: Subscription[] = []
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,12 +50,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.ui.loadingStateChanged
-      .subscribe(
-        loadState => {
-          this.loadingState = loadState;
-        }
-      );
+    this.subscriptions.push(
+      this.ui.loadingStateChanged
+        .subscribe(
+          loadState => {
+            this.loadingState = loadState;
+          }
+        )
+    );
 
     const customer: Customer = {
       'email': this.loginForm.value.email,
@@ -60,6 +66,10 @@ export class LoginComponent implements OnInit {
 
     this.auth.loginCustomer(customer);
 
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 }
