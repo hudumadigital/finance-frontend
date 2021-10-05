@@ -6,11 +6,14 @@ import { HttpClient } from "@angular/common/http";
 
 import { Customer } from "../models/customer.model";
 import { Router } from "@angular/router";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  customerSubject = new BehaviorSubject({});
 
   constructor(
     private path: PathService,
@@ -27,7 +30,7 @@ export class AuthService {
     // customerData.append('email', customer.email);
     // customerData.append('password', customer.password);
     // console.log(customer);
-    
+
     this.http.post(this.path.authUrl + '/signup', {
       username: customer.fullName,
       mobile: customer.mobile,
@@ -39,7 +42,7 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
           this.ui.showSnackbar(result.message);
           if(result.success){
-            this.router.navigate(['../login']);
+            this.router.navigate(['../login']).then(r => {});
           }
         },
         error => {
@@ -65,13 +68,16 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
 
           if (result.isLoggedIn) {
-            this.router.navigate(['../customer']).then(r => {
-              localStorage.setItem('customerData', JSON.stringify(result));
+            this.router.navigate(['customer','dashboard']).then(r => {
+              localStorage.setItem('customer', JSON.stringify(result));
             });
             return;
           }
-          this.ui.showSnackbar(result.message);
-          this.router.navigate(['../login']);
+
+          this.router.navigate(['../login'])
+            .then(r => {
+              this.ui.showSnackbar(result.message);
+            });
         },
         error => {
           this.ui.loadingStateChanged.next(false);

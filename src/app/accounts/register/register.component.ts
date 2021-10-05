@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../helpers/must-match.validator";
 import {UiService} from "../../services/ui.service";
 import {AuthService} from "../../services/auth.service";
 import {Customer} from "../../models/customer.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   loadingState = false;
 
@@ -19,6 +20,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
   isSubmitted = false;
+
+  subscriptions: Subscription[] = []
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,12 +61,14 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.ui.loadingStateChanged
-      .subscribe(
-        loadState => {
-          this.loadingState = loadState;
-        }
-      );
+    this.subscriptions.push(
+      this.ui.loadingStateChanged
+        .subscribe(
+          loadState => {
+            this.loadingState = loadState;
+          }
+        )
+  );
 
     const customer: Customer = {
       'fullName': this.registerForm.value.fullName,
@@ -76,5 +81,8 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
+  }
 
 }
