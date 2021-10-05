@@ -27,7 +27,7 @@ export class AuthService {
     // customerData.append('email', customer.email);
     // customerData.append('password', customer.password);
     // console.log(customer);
-    
+
     this.http.post(this.path.authUrl + '/signup', {
       username: customer.fullName,
       mobile: customer.mobile,
@@ -39,7 +39,7 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
           this.ui.showSnackbar(result.message);
           if(result.success){
-            this.router.navigate(['../login']);
+            this.router.navigate(['../login']).then(r => {});
           }
         },
         error => {
@@ -65,12 +65,14 @@ export class AuthService {
           this.ui.loadingStateChanged.next(false);
 
           if (result.isLoggedIn) {
-            this.router.navigate(['dashboard']).then(r => {
-            });
+            this.router.navigate(['customer','dashboard']).then(r => {});
             return;
           }
-          this.ui.showSnackbar(result.message);
-          this.router.navigate(['../login']);
+
+          this.router.navigate(['../login'])
+            .then(r => {
+              this.ui.showSnackbar(result.message);
+            });
         },
         error => {
           this.ui.loadingStateChanged.next(false);
