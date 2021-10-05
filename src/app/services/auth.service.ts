@@ -16,9 +16,25 @@ export class AuthService {
     private ui: UiService,
     private http: HttpClient) { }
 
-  registerCustomer(customer: Customer) {
+  registerCustomer(customer: any) {
     this.ui.loadingStateChanged.next(true);
 
-    console.log(customer);
+    const customerData = new FormData();
+    customerData.append('username', customer.fullName);
+    customerData.append('mobile', customer.mobile);
+    customerData.append('email', customer.email);
+    customerData.append('password', customer.password);
+
+    this.http.post(this.path.url + '/signup', customerData, {})
+      .subscribe(
+        (result: any) => {
+          this.ui.loadingStateChanged.next(false);
+          this.ui.showSnackbar(result.message);
+        },
+        error => {
+          this.ui.loadingStateChanged.next(false);
+          this.ui.errorFormatter(error);
+        }
+      );
   }
 }
