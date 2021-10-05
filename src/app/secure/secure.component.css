@@ -15,7 +15,12 @@ mat-sidenav-content {
 mat-sidenav{
   width: 250px;
   padding:0;
-  border: none;
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #212529 !important;
+  border-right: 1px solid #212529;
 }
 
 mat-toolbar {

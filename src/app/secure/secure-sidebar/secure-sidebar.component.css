@@ -1,0 +1,29 @@
+.navbar-brand {
+  padding: 1rem 1.5rem 1.5rem;
+  margin-right: 0px;
+  display: block;
+}
+
+.navbar-vertical .navbar-nav .nav-item .nav-link {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1.8;
+  -webkit-transition: all 0.5s;
+  white-space: nowrap;
+  transition: all 0.5s;
+}
+
+.navbar-vertical .navbar-nav .nav-item .nav .nav-link {
+  padding: 0.5rem 2.5rem;
+}
+
+.navbar-vertical .navbar-nav .nav-item .navbar-heading {
+  color: #495057;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.008rem;
+  font-weight: 700;
+}
