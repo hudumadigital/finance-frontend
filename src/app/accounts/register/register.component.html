@@ -17,9 +17,24 @@
                 [ngClass]="{'is-invalid': isSubmitted && f.fullName.errors}"
                 type="text" id="fullName" class="form-control" name="fullName" placeholder="Full Name" required>
               <div *ngIf="isSubmitted && f.fullName.errors" class="invalid-feedback">
-                <span *ngIf="f.fullName.errors.required">Full Name is required</span>
+                <div *ngIf="f.fullName.errors.required">Full Name is required</div>
               </div>
             </div>
+
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile Number</label>
+              <input
+                formControlName="mobile"
+                [ngClass]="{'is-invalid': isSubmitted && f.mobile.errors}"
+                type="tel" id="mobile" class="form-control" name="mobile" placeholder="Mobile Number" required>
+              <div *ngIf="isSubmitted && f.mobile.errors" class="invalid-feedback">
+                <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                <div *ngIf="f.mobile.errors.pattern">Mobile Number must be a valid mobile number</div>
+                <div *ngIf="f.mobile.errors.minlength">Mobile Number must be at least 10 characters</div>
+                <div *ngIf="f.mobile.errors.maxlength">Mobile Number must be at most 10 characters</div>
+              </div>
+            </div>
+
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -27,10 +42,11 @@
                 [ngClass]="{'is-invalid': isSubmitted && f.email.errors}"
                 type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
               <div *ngIf="isSubmitted && f.email.errors" class="invalid-feedback">
-                <span *ngIf="f.email.errors.required">Email is required</span>
-                <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
               </div>
             </div>
+
             <div class="mb-3 position-relative">
               <label for="password" class="form-label">Password</label>
               <input
@@ -39,14 +55,15 @@
                 [attr.type]="passwordVisible == false ? 'password' : 'text'"
                 id="password" class="form-control" name="password" placeholder="Password" required>
               <div *ngIf="isSubmitted && f.password.errors" class="invalid-feedback">
-                <span *ngIf="f.password.errors.required">Password is required</span>
-                <span *ngIf="f.password.errors.min">Password must be at least 8 characters</span>
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
               </div>
               <a class="eye" (click)="togglePasswordVisibility()" [hidden]="isSubmitted && f.password.errors">
                 <i class="fs-5 bi-eye" *ngIf="passwordVisible"></i>
                 <i class="fs-5 bi-eye-slash" *ngIf="!passwordVisible"></i>
               </a>
             </div>
+
             <div class="mb-3 position-relative">
               <label for="password_confirmation" class="form-label">Confirm Password</label>
               <input
@@ -56,8 +73,8 @@
                 id="password_confirmation" class="form-control" name="password_confirmation"
                 placeholder="Confirm Password" required>
               <div *ngIf="isSubmitted && f.passwordConfirm.errors" class="invalid-feedback">
-                <span *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</span>
-                <span *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</span>
+                <div *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</div>
               </div>
               <a class="eye" (click)="togglePasswordConfirmVisibility()"
                  [hidden]="isSubmitted && f.passwordConfirm.errors">

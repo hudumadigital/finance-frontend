@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../helpers/must-match.validator";
+import {UiService} from "../../services/ui.service";
+import {AuthService} from "../../services/auth.service";
+import {Customer} from "../../models/customer.model";
 
 @Component({
   selector: 'app-register',
@@ -9,6 +12,8 @@ import {MustMatch} from "../../helpers/must-match.validator";
 })
 export class RegisterComponent implements OnInit {
 
+  loadingState = false;
+
   passwordVisible = false;
   passwordConfirmVisible = false;
 
@@ -16,13 +21,18 @@ export class RegisterComponent implements OnInit {
   isSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,) { }
+    private formBuilder: FormBuilder,
+    private ui: UiService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       'fullName': new FormControl(null, [Validators.required]),
+      'mobile': new FormControl(null,
+        [Validators.required, Validators.pattern("^[0-9]*$"),
+          Validators.minLength(10), Validators.maxLength(10)]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.min(8)]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(8)]),
       'passwordConfirm': new FormControl(null, [Validators.required])
     }, {
       validator: MustMatch('password', 'passwordConfirm')
@@ -48,7 +58,21 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log(this.registerForm);
+    this.ui.loadingStateChanged
+      .subscribe(
+        loadState => {
+          this.loadingState = loadState;
+        }
+      );
+
+    const customer: Customer = {
+      'fullName': this.registerForm.value.fullName,
+      'mobile': this.registerForm.value.mobile,
+      'email': this.registerForm.value.email,
+      'password': this.registerForm.value.password
+    }
+
+    this.auth.registerCustomer(customer);
 
   }
 
