@@ -17,6 +17,10 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: '/customer/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+      {path: 'balance', component: DashboardComponent, data: {title: 'Balance'}},
+      {path: 'transfers', component: DashboardComponent, data: {title: 'Transfers'}},
+      {path: 'deposits', component: DashboardComponent, data: {title: 'Deposits'}},
+      {path: 'balance', component: DashboardComponent, data: {title: 'Balance'}},
     ]
   },
 ];
