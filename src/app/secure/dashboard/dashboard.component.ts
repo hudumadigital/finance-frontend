@@ -3,6 +3,7 @@ import {map} from 'rxjs/operators';
 import {Breakpoints, BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {UiService} from '../../services/ui.service';
 import {Subscription} from 'rxjs';
+import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -61,18 +62,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return
     })
   );
-  numberOfProducts = 0;
+  transfers = 0;
   loadingState = false;
-  numberOfOrders = 0;
+  primary = 0;
+  agency = 0;
+  totalBalance = 0;
   subscriptions: Subscription[] = [];
   constructor(private breakpointObserver: BreakpointObserver,
-              private ui: UiService) {}
+              private ui: UiService,
+              private walletSerive: WalletService) {}
   ngOnInit(): void {
     this.ui.loadingStateChanged.subscribe(
       loadState => {
         this.loadingState = loadState;
       }
     );
+    this.walletSerive.getBalance();
+    this.walletSerive.balanceSubject.subscribe(
+      (result: any) => {
+        this.agency = result.agencyBalance;
+        this.primary = result.primaryBalance;
+        this.totalBalance = result.totalBalance;
+        // this.trasfers = result.tranfers;
+      }
+    )
     // this.shopService.getNumberOfProducts();
     // this.shopService.getNumberOfOrders();
     // this.subscriptions.push(
