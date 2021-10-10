@@ -4,7 +4,7 @@ import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {PathService} from "./path.service";
 import {AuthService} from "./auth.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ export class WalletService {
     private http: HttpClient,
     private path: PathService,
     private auth: AuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
 
   depositAmount(amount: number) {
@@ -54,7 +55,12 @@ export class WalletService {
     }, this.auth.getOptions())
       .subscribe(
         (result: any) => {
-          console.log(result);
+          this.ui.loadingStateChanged.next(false);
+          this.ui.showSnackbar(result.message);
+          this.router.navigate(['customer', 'balance']).then(r => {})
+        },
+        error => {
+          this.ui.errorFormatter(error);
         }
       );
   }
@@ -72,7 +78,6 @@ export class WalletService {
         (result:any) => {
           this.ui.loadingStateChanged.next(false);
           this.searchedAccountSubject.next(result);
-          console.log(result);
         },
         error => {
           this.ui.errorFormatter(error)
