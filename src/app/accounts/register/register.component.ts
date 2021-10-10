@@ -78,7 +78,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     this.auth.registerCustomer(customer);
-
   }
 
   ngOnDestroy() {

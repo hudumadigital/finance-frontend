@@ -1,0 +1,25 @@
+.dashboard-card {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+}
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.dashboard-card-content {
+  /*text-align: center;*/
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+}
+mat-card {
+  display: flex;
+  flex-direction: column;
+}

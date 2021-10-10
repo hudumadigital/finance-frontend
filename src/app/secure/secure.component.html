@@ -23,11 +23,15 @@
       </div>
     </mat-toolbar>
 
-    <div class="container py-3">
+    <div class="container py-2 py-md-5">
       <div class="content">
         <div class="row" fxLayout="column" fxLayoutAlign="center center">
-          <div class="col-12 col-lg-12 pb-5">
-            <router-outlet></router-outlet>
+          <div class="col-12 col-md-11">
+            <div class="card shadow">
+              <div class="card-body">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
           </div>
         </div>
       </div>

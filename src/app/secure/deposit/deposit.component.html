@@ -1,0 +1,61 @@
+<div>
+  <div fxLayoutAlign="center center">
+    <h2>ACCOUNT DEPOSIT FORM</h2>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="depositForm" (ngSubmit)="onSubmitForm()">
+
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <h2>Choose account</h2>
+          </div>
+          <div class="col-12 col-md-9">
+            <mat-form-field appearance="outline">
+              <mat-label>Account</mat-label>
+              <mat-select formControlName="account" required>
+                <mat-option *ngFor="let account of accounts; let i = index" [value]="account"
+                            (onSelectionChange)="getAmountInputField()">
+                  {{ account }}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix>rotate_right</mat-icon>
+              <div *ngIf="isFormSubmitted && f.account.errors" class="invalid-feedback">
+                <span *ngIf="f.account.errors.required">Account is required</span>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="isAccountSelected">
+          <div class="col-12 col-md-3">
+            <h2>Add amount</h2>
+          </div>
+          <div class="col-12 col-md-9">
+            <mat-form-field appearance="outline">
+              <mat-label>Amount</mat-label>
+              <input type="number" formControlName="amount" matInput placeholder="Amount eg: 12000"
+                     name="depositAmount" required>
+            </mat-form-field>
+            <div *ngIf="isFormSubmitted && f.amount.errors" class="invalid-feedback">
+              <span *ngIf="f.amount.errors.required">Account is required</span>
+            </div>
+            <div class="d-grid">
+              <button
+                *ngIf="!loadingState"
+                type="submit" mat-raised-button color="primary">Create Deposit</button>
+
+              <button
+                *ngIf="loadingState"
+                class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm"></span>
+                Logging In...
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

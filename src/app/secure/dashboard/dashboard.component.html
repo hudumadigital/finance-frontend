@@ -1,1 +1,69 @@
-<p>dashboard works!</p>
+<section style="padding-bottom: 10px">
+  <div style="padding: 10px 4px">
+    <h1 class="font-theme" style="margin-bottom: 0; font-size: 35px; font-weight: 500">Dashboard</h1>
+  </div>
+  <mat-grid-list cols="{{(cardLayout | async)!.columns}}" rowHeight="200px">
+    <!--Mini Cards-->
+    <div class="mini-cards">
+      <a routerLink="/shop/products/products-list">
+        <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
+                       [rowspan]="( cardLayout | async )!.miniCard.rows">
+          <app-dashboard-card title="Products" icon="bi-shop">
+            <div *ngIf="loadingState">
+              <mat-spinner color="warn"></mat-spinner>
+            </div>
+            <div *ngIf="!loadingState">
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfProducts}}</h3>
+            </div>
+          </app-dashboard-card>
+        </mat-grid-tile>
+      </a>
+      <a routerLink="/shop/products/orders">
+        <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
+                       [rowspan]="( cardLayout | async )!.miniCard.rows">
+          <app-dashboard-card title="Orders" icon="bi-handbag">
+            <div *ngIf="loadingState">
+              <mat-spinner color="warn"></mat-spinner>
+            </div>
+            <div *ngIf="!loadingState">
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfOrders}}</h3>
+            </div>
+          </app-dashboard-card>
+        </mat-grid-tile>
+      </a>
+      <a routerLink="/shop/products/sold">
+        <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
+                       [rowspan]="( cardLayout | async )!.miniCard.rows">
+          <app-dashboard-card title="Sold">
+            <div *ngIf="loadingState">
+              <mat-spinner color="warn"></mat-spinner>
+            </div>
+            <div *ngIf="!loadingState">
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{0}}</h3>
+            </div>
+          </app-dashboard-card>
+        </mat-grid-tile>
+      </a>
+      <a routerLink="/shop/products/products-list">
+        <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
+                       [rowspan]="( cardLayout | async )!.miniCard.rows">
+          <app-dashboard-card title="Products">
+            <div *ngIf="loadingState">
+              <mat-spinner color="warn"></mat-spinner>
+            </div>
+            <div *ngIf="!loadingState">
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfProducts}}</h3>
+            </div>
+          </app-dashboard-card>
+        </mat-grid-tile>
+      </a>
+    </div>
+    <!--Table-->
+    <mat-grid-tile [colspan]="( cardLayout | async )!.table.cols"
+                   [rowspan]="( cardLayout | async )!.table.rows">
+      <app-dashboard-card title="Your Shop Products">
+        <div>Table Content Here</div>
+      </app-dashboard-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>

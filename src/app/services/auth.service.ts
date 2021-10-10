@@ -21,7 +21,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router) { }
 
-  registerCustomer(customer: any) {
+  registerCustomer(customer: Customer) {
     this.ui.loadingStateChanged.next(true);
 
     // const customerData = new FormData();
