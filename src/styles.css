@@ -69,3 +69,15 @@ a:hover {
 .mat-drawer-container {
   color: var(--bs-dark) !important;
 }
+
+mat-spinner{
+  width: 40px !important;
+  height: 40px !important;
+}
+mat-spinner svg {
+  width: 40px !important;
+  height: 40px !important;
+}
+mat-spinner svg circle {
+  stroke-width: 5% !important;
+}
