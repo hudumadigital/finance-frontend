@@ -28,18 +28,18 @@ export class WalletService {
   }
 
   getBalance() {
-    this.ui.loadingStateChanged.next();
+    this.ui.loadingStateChanged.next(true);
     this.http.get(`${this.path.bankPath}/balance`, this.auth.getOptions())
       .subscribe(
         (result: any) => {
-          this.ui.loadingStateChanged.next(true);
+          this.ui.loadingStateChanged.next(false);
           this.balanceSubject.next(result);
           if (result.message) {
             this.ui.showSnackbar(result.message);
           }
         },
         error => {
-          this.ui.loadingStateChanged.next(true);
+          this.ui.loadingStateChanged.next(false);
           this.ui.errorFormatter(error);
         }
       );

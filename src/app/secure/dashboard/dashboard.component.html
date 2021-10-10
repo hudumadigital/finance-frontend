@@ -8,12 +8,12 @@
       <a routerLink="/shop/products/products-list">
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
-          <app-dashboard-card title="Products" icon="bi-shop">
+          <app-dashboard-card title="Total Balance" icon="dollar">
             <div *ngIf="loadingState">
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfProducts}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{totalBalance | currency:'TZS'}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
@@ -21,12 +21,12 @@
       <a routerLink="/shop/products/orders">
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
-          <app-dashboard-card title="Orders" icon="bi-handbag">
+          <app-dashboard-card title="Primary Account Balance" icon="bi-handbag">
             <div *ngIf="loadingState">
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfOrders}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{primary | currency:'TZS'}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
@@ -34,12 +34,12 @@
       <a routerLink="/shop/products/sold">
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
-          <app-dashboard-card title="Sold">
+          <app-dashboard-card title="Agency Account Balance">
             <div *ngIf="loadingState">
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{0}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{agency | currency:'TZS' }}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
@@ -47,23 +47,23 @@
       <a routerLink="/shop/products/products-list">
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
-          <app-dashboard-card title="Products">
+          <app-dashboard-card title="Transfer(s) Performed">
             <div *ngIf="loadingState">
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{numberOfProducts}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{transfers}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
       </a>
     </div>
     <!--Table-->
-    <mat-grid-tile [colspan]="( cardLayout | async )!.table.cols"
+    <!-- <mat-grid-tile [colspan]="( cardLayout | async )!.table.cols"
                    [rowspan]="( cardLayout | async )!.table.rows">
-      <app-dashboard-card title="Your Shop Products">
+      <app-dashboard-card title="Other Account info summary">
         <div>Table Content Here</div>
       </app-dashboard-card>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
   </mat-grid-list>
 </section>
