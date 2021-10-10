@@ -9,8 +9,10 @@ import {SecureComponent} from "./secure/secure.component";
 import {DepositComponent} from "./secure/deposit/deposit.component";
 import {BalanceComponent} from "./secure/balance/balance.component";
 import {TransferComponent} from "./secure/transfer/transfer.component";
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent, data: {title: 'Home'}},
   {path: 'login', component: LoginComponent, data: {title: 'Login'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register'}},
   {path: 'forgot-password', component: ForgotPasswordComponent, data: {title: 'Forgot Password'}},

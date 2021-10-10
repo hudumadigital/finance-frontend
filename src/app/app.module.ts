@@ -13,11 +13,13 @@ import {SecureModule} from "./secure/secure.module";
 import {TitleService} from "./services/title.service";
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
