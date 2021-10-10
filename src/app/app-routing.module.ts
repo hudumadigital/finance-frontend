@@ -11,6 +11,8 @@ import {BalanceComponent} from "./secure/balance/balance.component";
 import {TransferComponent} from "./secure/transfer/transfer.component";
 import { HomeComponent } from './home/home.component';
 import {BillSummaryComponent} from "./secure/bill-summary/bill-summary.component";
+import {ScanQrCodeComponent} from "./secure/scan-qr-code/scan-qr-code.component";
+import {QrCodeComponent} from "./secure/qr-code/qr-code.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -27,6 +29,8 @@ const routes: Routes = [
       {path: 'transfers', component: TransferComponent, data: {title: 'Transfers'}},
       {path: 'deposits', component: DepositComponent, data: {title: 'Deposits'}},
       {path: 'bill-summary', component: BillSummaryComponent, data: {title: 'Bill Summary'}},
+      {path: 'scan-qr', component: ScanQrCodeComponent, data: {title: 'Bill Summary'}},
+      {path: 'qr-code', component: QrCodeComponent, data: {title: 'Bill Summary'}},
     ]
   },
 ];
