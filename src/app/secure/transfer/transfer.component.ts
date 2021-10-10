@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UiService} from "../../services/ui.service";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {WalletService} from "../../services/wallet.service";
@@ -22,10 +22,25 @@ export class TransferComponent implements OnInit {
   constructor(
     private router: Router,
     private ui: UiService,
-    private wallet: WalletService) {
+    private wallet: WalletService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    // let search_query: any;
+    // this.route.queryParams.subscribe(
+    //   query => {
+    //     search_query = query.q;
+    //     if (search_query) {
+    //       this.searchedAccount = search_query;
+    //       this.transferForm = new FormGroup({
+    //         account: new FormControl(this.searchedAccount, [Validators.required]),
+    //         amount: new FormControl(null, [Validators.required]),
+    //       });
+    //       return;
+    //     }
+    //   }
+    // );
   }
 
   search(searchForm: NgForm): void
@@ -43,12 +58,17 @@ export class TransferComponent implements OnInit {
             .subscribe(
               (result: any) => {
                 console.log(result);
-                this.isAccountSearched = true; // true when account is obtained
-                this.searchedAccount = query;
+                this.isAccountSearched = true;
+                this.searchedAccount = result.email;
+                this.ui.showSnackbar(result.message);
                 this.transferForm = new FormGroup({
                   account: new FormControl(this.searchedAccount, [Validators.required]),
                   amount: new FormControl(null, [Validators.required]),
                 });
+
+              },
+              error => {
+                this.isAccountSearched = false;
               }
             )
         }
@@ -79,7 +99,8 @@ export class TransferComponent implements OnInit {
     );
 
     const transferData: any = {
-      primaryAmount: this.transferForm.value.amount
+      amount: this.transferForm.value.amount,
+      accountMail: this.transferForm.value.account
     }
 
     this.wallet.transferAmount(transferData);

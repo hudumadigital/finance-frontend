@@ -47,12 +47,21 @@ export class WalletService {
   }
 
   transferAmount(transferData: any) {
-    console.log(transferData);
+    this.ui.loadingStateChanged.next(true);
+    this.http.post(`${this.path.bankPath}/send-to-wallet`, {
+      amount: transferData.amount,
+      accountMail: transferData.accountMail
+    }, this.auth.getOptions())
+      .subscribe(
+        (result: any) => {
+          console.log(result);
+        }
+      );
   }
 
   searchAccount() {
     this.ui.loadingStateChanged.next(true);
-    let search_query: any = null;
+    let search_query = '';
     this.route.queryParams.subscribe(
       query => {
         search_query = query.q;
@@ -61,9 +70,12 @@ export class WalletService {
     this.http.get(`${this.path.bankPath}/search/${search_query}`, this.auth.getOptions())
       .subscribe(
         (result:any) => {
-          console.log(`${this.path.bankPath}/search/${search_query}`);
           this.ui.loadingStateChanged.next(false);
           this.searchedAccountSubject.next(result);
+          console.log(result);
+        },
+        error => {
+          this.ui.errorFormatter(error)
         }
       );
   }

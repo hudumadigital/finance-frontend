@@ -13,10 +13,12 @@
               (ngSubmit)="search(searchForm); $event.preventDefault();">
           <label for="search_query"></label>
           <mat-form-field appearance="outline">
-            <mat-label>Amount</mat-label>
-            <input (search)="removeFocus($event)" id="search_query" autocomplete="false"
+            <mat-label>Receiver Account</mat-label>
+            <input (search)="removeFocus($event)"
+                   id="search_query" autocomplete="false"
                    spellcheck="false" type="search" matInput aria-label="search" aria-live="polite"
-                   placeholder="Search Receiver Account" ngModel name="search_query">
+                   placeholder="Enter receiver account, press enter to search"
+                   [ngModel]="searchedAccount" name="search_query">
           </mat-form-field>
         </form>
       </div>
