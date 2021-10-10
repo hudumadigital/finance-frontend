@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {UiService} from "./ui.service";
-import {Subject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {PathService} from "./path.service";
-import {AuthService} from "./auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { UiService } from "./ui.service";
+import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { PathService } from "./path.service";
+import { AuthService } from "./auth.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,20 @@ export class WalletService {
 
 
   depositAmount(amount: number) {
-    this.ui.loadingStateChanged.next(false);
-    console.log(amount);
+    this.ui.loadingStateChanged.next(true);
+    // console.log(amount);
+    this.http.post(`${this.path.bankPath}/add-balance`, { amount }, this.auth.getOptions())
+      .subscribe(
+        (result: any) => {
+          this.ui.loadingStateChanged.next(false);
+          // console.log(result)
+          this.ui.showSnackbar(result.message);
+          this.router.navigate(['customer', 'deposits'])
+        }, error => {
+          this.ui.loadingStateChanged.next(false);
+          this.ui.errorFormatter(error);
+        }
+      )
   }
 
   getBalance() {
@@ -57,7 +69,7 @@ export class WalletService {
         (result: any) => {
           this.ui.loadingStateChanged.next(false);
           this.ui.showSnackbar(result.message);
-          this.router.navigate(['customer', 'balance']).then(r => {})
+          this.router.navigate(['customer', 'balance']).then(r => { })
         },
         error => {
           this.ui.errorFormatter(error);
@@ -75,7 +87,7 @@ export class WalletService {
     );
     this.http.get(`${this.path.bankPath}/search/${search_query}`, this.auth.getOptions())
       .subscribe(
-        (result:any) => {
+        (result: any) => {
           this.ui.loadingStateChanged.next(false);
           this.searchedAccountSubject.next(result);
         },

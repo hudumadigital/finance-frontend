@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
-import {UiService} from "../../services/ui.service";
-import {WalletService} from "../../services/wallet.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
+import { UiService } from "../../services/ui.service";
+import { WalletService } from "../../services/wallet.service";
 
 @Component({
   selector: 'app-deposit',
@@ -58,10 +58,11 @@ export class DepositComponent implements OnInit, OnDestroy {
         )
     );
 
-    if (this.depositForm.value.account === 'Agency account' ) {
+    if (this.depositForm.value.account === 'Agency account') {
       const depositData: any = {
         agencyAmount: this.depositForm.value.amount
       }
+      this.wallet.depositAmount(depositData)
       return;
     }
 
