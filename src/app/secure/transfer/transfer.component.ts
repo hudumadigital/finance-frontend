@@ -57,7 +57,6 @@ export class TransferComponent implements OnInit {
           this.wallet.searchedAccountSubject
             .subscribe(
               (result: any) => {
-                console.log(result);
                 this.isAccountSearched = true;
                 this.searchedAccount = result.email;
                 this.ui.showSnackbar(result.message);

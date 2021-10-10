@@ -62,7 +62,6 @@ export class DepositComponent implements OnInit, OnDestroy {
       const depositData: any = {
         agencyAmount: this.depositForm.value.amount
       }
-      console.log(depositData);
       return;
     }
 
