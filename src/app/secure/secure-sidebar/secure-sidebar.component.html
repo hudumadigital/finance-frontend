@@ -56,6 +56,22 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <div class="navbar-heading">
+          Bill Management
+        </div>
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/customer/bill-summary"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          (click)="onCloseSidebar()" class="nav-link">
+          <i class="bi bi-bank me-2 mb-1"></i>
+          Bill Summary
+        </a>
+      </li>
+
 
       <li class="nav-item">
         <div class="navbar-heading">

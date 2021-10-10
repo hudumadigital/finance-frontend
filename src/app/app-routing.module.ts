@@ -10,6 +10,7 @@ import {DepositComponent} from "./secure/deposit/deposit.component";
 import {BalanceComponent} from "./secure/balance/balance.component";
 import {TransferComponent} from "./secure/transfer/transfer.component";
 import { HomeComponent } from './home/home.component';
+import {BillSummaryComponent} from "./secure/bill-summary/bill-summary.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: 'balance', component: BalanceComponent, data: {title: 'Balance'}},
       {path: 'transfers', component: TransferComponent, data: {title: 'Transfers'}},
       {path: 'deposits', component: DepositComponent, data: {title: 'Deposits'}},
+      {path: 'bill-summary', component: BillSummaryComponent, data: {title: 'Bill Summary'}},
     ]
   },
 ];
