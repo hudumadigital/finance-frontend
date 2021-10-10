@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class PathService {
 
   authUrl = 'http://localhost:5000/account';
+  bankPath = 'http://localhost:5000/bank';
 
   constructor() { }
 }

@@ -8,6 +8,7 @@ import {DashboardComponent} from "./secure/dashboard/dashboard.component";
 import {SecureComponent} from "./secure/secure.component";
 import {DepositComponent} from "./secure/deposit/deposit.component";
 import {BalanceComponent} from "./secure/balance/balance.component";
+import {TransferComponent} from "./secure/transfer/transfer.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, data: {title: 'Login'}},
@@ -20,7 +21,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/customer/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
       {path: 'balance', component: BalanceComponent, data: {title: 'Balance'}},
-      {path: 'transfers', component: DashboardComponent, data: {title: 'Transfers'}},
+      {path: 'transfers', component: TransferComponent, data: {title: 'Transfers'}},
       {path: 'deposits', component: DepositComponent, data: {title: 'Deposits'}},
     ]
   },

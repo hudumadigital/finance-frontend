@@ -21,6 +21,16 @@ export class AuthService {
     private http: HttpClient,
     private router: Router) { }
 
+  getOptions(): object{
+    const {token}  = JSON.parse(<string>localStorage.getItem('customer')) ?
+      JSON.parse(<string>localStorage.getItem('customer')) : '';
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+  }
+
   registerCustomer(customer: Customer) {
     this.ui.loadingStateChanged.next(true);
 

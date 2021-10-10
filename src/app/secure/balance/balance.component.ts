@@ -11,18 +11,17 @@ export class BalanceComponent implements OnInit, OnDestroy {
 
   loadingState = false;
   subscriptions: Subscription[] = [];
-  balanceData = {
-    primaryBalance: 12000,
-    agencyBalance: 15000,
-    totalBalance: 27000,
-    account: 'saidmunir73@gmail.com'
-  }
+  account = '';
+  balanceData: any;
 
   constructor(
     private wallet: WalletService) { }
 
   ngOnInit(): void {
     this.wallet.getBalance();
+    const {email}  = JSON.parse(<string>localStorage.getItem('customer')) ?
+      JSON.parse(<string>localStorage.getItem('customer')) : '';
+    this.account = email;
     this.subscriptions.push(
       this.wallet.balanceSubject
         .subscribe(

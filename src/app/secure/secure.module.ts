@@ -11,6 +11,7 @@ import { DashboardCardComponent } from './dashboard/dashboard-card/dashboard-car
 import { DepositComponent } from './deposit/deposit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BalanceComponent } from './balance/balance.component';
+import { TransferComponent } from './transfer/transfer.component';
 
 
 
@@ -22,7 +23,8 @@ import { BalanceComponent } from './balance/balance.component';
     SecureTopbarComponent,
     DashboardCardComponent,
     DepositComponent,
-    BalanceComponent
+    BalanceComponent,
+    TransferComponent
   ],
     imports: [
         CommonModule,

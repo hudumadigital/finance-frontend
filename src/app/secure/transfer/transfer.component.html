@@ -1,0 +1,82 @@
+<div>
+  <div fxLayoutAlign="center center">
+    <h2>ACCOUNT TRANSFER FORM</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <h2>Search Receiver Account</h2>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="search-box font-theme">
+        <form action="." method="get" #searchForm="ngForm"
+              (ngSubmit)="search(searchForm); $event.preventDefault();">
+          <label for="search_query"></label>
+          <mat-form-field appearance="outline">
+            <mat-label>Amount</mat-label>
+            <input (search)="removeFocus($event)" id="search_query" autocomplete="false"
+                   spellcheck="false" type="search" matInput aria-label="search" aria-live="polite"
+                   placeholder="Search Receiver Account" ngModel name="search_query">
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="isAccountSearched" class="row">
+    <div class="col-12">
+      <div class="bg-secondary bg-opacity-25 rounded p-3">
+        <form [formGroup]="transferForm" (ngSubmit)="onSubmitForm()">
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <h2>Receiver Account</h2>
+            </div>
+            <div class="col-12 col-md-9">
+              <mat-form-field appearance="outline">
+                <mat-label>Receiver Account</mat-label>
+                <input readonly type="text" formControlName="account" matInput
+                       placeholder="eg: example@example.com"
+                       name="depositAmount" required>
+              </mat-form-field>
+              <div *ngIf="isFormSubmitted && f.account.errors" class="invalid-feedback">
+                <span *ngIf="f.account.errors.required">Account is required</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <h2>Amount</h2>
+            </div>
+            <div class="col-12 col-md-9">
+              <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input type="number" formControlName="amount" matInput placeholder="Amount eg: 12000"
+                       name="depositAmount" required>
+              </mat-form-field>
+              <div *ngIf="isFormSubmitted && f.amount.errors" class="invalid-feedback">
+                <span *ngIf="f.amount.errors.required">Account is required</span>
+              </div>
+              <div class="d-grid">
+                <button
+                  *ngIf="!loadingState"
+                  type="submit" mat-raised-button color="primary">Transfer</button>
+
+                <button
+                  *ngIf="loadingState"
+                  class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm"></span>
+                  Transfering...
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
