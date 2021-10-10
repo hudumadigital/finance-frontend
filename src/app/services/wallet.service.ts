@@ -32,7 +32,7 @@ export class WalletService {
           this.ui.loadingStateChanged.next(false);
           // console.log(result)
           this.ui.showSnackbar(result.message);
-          this.router.navigate(['customer', 'deposits'])
+          this.router.navigate(['customer', 'balance']).then(r => {});
         }, error => {
           this.ui.loadingStateChanged.next(false);
           this.ui.errorFormatter(error);
