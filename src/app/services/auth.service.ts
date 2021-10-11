@@ -95,4 +95,8 @@ export class AuthService {
         }
       );
   }
+    logoutCustomer(): void {
+      localStorage.removeItem('customerData');
+      this.router.navigate(['/']);
+  }
 }
