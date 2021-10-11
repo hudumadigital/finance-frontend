@@ -14,6 +14,7 @@ import {TitleService} from "./services/title.service";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -21,15 +22,16 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    AccountsModule,
-    HttpClientModule,
-    SecureModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FlexLayoutModule,
+        AccountsModule,
+        HttpClientModule,
+        SecureModule,
+        MatButtonModule
+    ],
   providers: [
     TitleService
   ],
