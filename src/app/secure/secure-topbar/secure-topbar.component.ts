@@ -24,4 +24,7 @@ export class SecureTopbarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
+  logout(): void{
+    this.auth.logoutCustomer();
+  }
 }

@@ -108,6 +108,7 @@ export class WalletService {
         (result: any) => {
           this.ui.loadingStateChanged.next(false);
           this.ui.showSnackbar(result.message)
+          this.router.navigate(['customer', 'utility-summary']);
         },
         error => {
           this.ui.loadingStateChanged.next(false);

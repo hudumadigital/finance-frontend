@@ -1,4 +1,6 @@
-<p>The bills have been looped without style</p>
+<div fxLayoutAlign="center center">
+    <h3>YOUR LATEST UTILITIES BILLS</h3>
+  </div>
 <ul *ngFor="let utility of utilities">
-    <li>{{ utility.bill }} paid for {{ utility.amount }}</li>
+    <li> <i>{{ utility.bill }}</i> paid for <strong>{{ utility.amount }}</strong></li>
 </ul>
