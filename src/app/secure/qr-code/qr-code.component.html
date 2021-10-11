@@ -1,6 +1,9 @@
-<qr-code value="{{transferPath}}"
-         size="300"
-         errorCorrectionLevel="M"
-         centerImageSrc="undefined"
-         centerImageSize="undefined">
-</qr-code>
+<div>
+  <h3>Your QR code for transfer</h3>
+  <p>Download and share</p>
+  <ngx-qrcode
+    [errorCorrectionLevel]="correctionLevel"
+    cssClass="bshadow" id="qrCodeImage" [elementType]="elementType" [value] = "value">
+  </ngx-qrcode><br>
+  <a mat-raised-button color="primary" [href]="href" (click)="downloadImage()" download>Download</a>
+</div>

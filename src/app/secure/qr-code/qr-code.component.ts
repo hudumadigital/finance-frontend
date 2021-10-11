@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PathService} from "../../services/path.service";
+import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "ngx-qrcode2";
 
 @Component({
   selector: 'app-qr-code',
@@ -8,8 +9,12 @@ import {PathService} from "../../services/path.service";
 })
 export class QrCodeComponent implements OnInit {
 
-  email = ''
-  transferPath = '';
+  email!: string;
+  title = 'generate-qrcode';
+  elementType:  NgxQrcodeElementTypes.URL | NgxQrcodeElementTypes.CANVAS | NgxQrcodeElementTypes.IMG = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  value!: string;
+  href!: string;
 
   constructor(
     private path: PathService,) { }
@@ -18,8 +23,11 @@ export class QrCodeComponent implements OnInit {
     const {email}  = JSON.parse(<string>localStorage.getItem('customer')) ?
       JSON.parse(<string>localStorage.getItem('customer')) : '';
     this.email = email;
-    this.transferPath = this.path.transferPath + '?q=' + this.email;
-    console.log(this.transferPath);
+    this.value = this.path.transferPath + '?q=' + this.email;
+  }
+
+  downloadImage(){
+    this.href = document.getElementsByTagName('img')[1].src;
   }
 
 }
