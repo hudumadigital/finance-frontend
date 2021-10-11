@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UiService} from "../../services/ui.service";
-import {WalletService} from "../../services/wallet.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from "rxjs";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UiService } from "../../services/ui.service";
+import { WalletService } from "../../services/wallet.service";
 
 @Component({
   selector: 'app-bill',
@@ -10,7 +10,7 @@ import {WalletService} from "../../services/wallet.service";
   styleUrls: ['./bill.component.css']
 })
 export class BillComponent implements OnInit, OnDestroy {
-  accounts: Array<string> = ['Primary account', 'Agency account'];
+  accounts: Array<string> = ['Electricity', 'Water', 'Ticket', 'Voucher'];
   isAccountSelected = false;
   isFormSubmitted = false;
   loadingState = false;
@@ -57,20 +57,26 @@ export class BillComponent implements OnInit, OnDestroy {
         )
     );
 
-    if (this.depositForm.value.account === 'Agency account') {
-      const depositData: any = {
-        agencyAmount: this.depositForm.value.amount
-      }
-      this.wallet.depositAmount(depositData)
-      return;
+    // if (this.depositForm.value.account === 'Agency account') {
+    //   const depositData: any = {
+    //     agencyAmount: this.depositForm.value.amount
+    //   }
+    //   this.wallet.depositAmount(depositData)
+    //   return;
+    // }
+
+    // const depositData: any = {
+    //   primaryAmount: this.depositForm.value.amount
+    // }
+
+    // this.wallet.depositAmount(depositData);
+
+    const utilityData: any = {
+      bill: this.depositForm.value.account,
+      amount: this.depositForm.value.amount,
     }
-
-    const depositData: any = {
-      primaryAmount: this.depositForm.value.amount
-    }
-
-    this.wallet.depositAmount(depositData);
-
+    // console.log(utilityData);
+    this.wallet.payBill(utilityData);
   }
 
   ngOnDestroy() {
