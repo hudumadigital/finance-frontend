@@ -96,7 +96,7 @@ export class AuthService {
       );
   }
     logoutCustomer(): void {
-      localStorage.removeItem('customerData');
+      localStorage.removeItem('customer');
       this.router.navigate(['/']);
   }
 }
