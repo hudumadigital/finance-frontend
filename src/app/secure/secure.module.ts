@@ -17,6 +17,7 @@ import { BillComponent } from './bill/bill.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { ScanQrCodeComponent } from './scan-qr-code/scan-qr-code.component';
 import {NgxQRCodeModule} from "ngx-qrcode2";
+import {ZXingScannerModule} from "@zxing/ngx-scanner";
 
 
 
@@ -33,16 +34,17 @@ import {NgxQRCodeModule} from "ngx-qrcode2";
     BillSummaryComponent,
     BillComponent,
     QrCodeComponent,
-    ScanQrCodeComponent
+    ScanQrCodeComponent,
   ],
     imports: [
-      CommonModule,
-      RouterModule,
-      MaterialModule,
-      FlexModule,
-      FormsModule,
-      ReactiveFormsModule,
-      NgxQRCodeModule
+        CommonModule,
+        RouterModule,
+        MaterialModule,
+        FlexModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxQRCodeModule,
+        ZXingScannerModule
     ]
 })
 export class SecureModule { }

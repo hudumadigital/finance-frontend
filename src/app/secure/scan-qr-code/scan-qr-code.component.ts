@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-scan-qr-code',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScanQrCodeComponent implements OnInit {
 
-  constructor() { }
+  public scannerEnabled: boolean = true;
+
+  constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
+
+  public scanSuccessHandler($event: any) {
+    this.scannerEnabled = false;
+  }
+
+  public enableScanner() {
+    this.scannerEnabled = !this.scannerEnabled;
+  }
+
 
 }
