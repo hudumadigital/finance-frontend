@@ -93,6 +93,7 @@ export class WalletService {
         },
         error => {
           this.ui.loadingStateChanged.next(false);
+          this.searchedAccountSubject.next({ error: error });
           this.ui.errorFormatter(error)
         }
       );

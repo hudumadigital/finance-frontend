@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PathService} from "../../services/path.service";
 
 @Component({
   selector: 'app-qr-code',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrCodeComponent implements OnInit {
 
-  constructor() { }
+  email = ''
+  transferPath = '';
+
+  constructor(
+    private path: PathService,) { }
 
   ngOnInit(): void {
+    const {email}  = JSON.parse(<string>localStorage.getItem('customer')) ?
+      JSON.parse(<string>localStorage.getItem('customer')) : '';
+    this.email = email;
+    this.transferPath = this.path.transferPath + '?q=' + this.email;
+    console.log(this.transferPath);
   }
 
 }

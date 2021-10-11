@@ -16,6 +16,7 @@ import { BillSummaryComponent } from './bill-summary/bill-summary.component';
 import { BillComponent } from './bill/bill.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { ScanQrCodeComponent } from './scan-qr-code/scan-qr-code.component';
+import {QrCodeModule} from "ng-qrcode";
 
 
 
@@ -35,12 +36,13 @@ import { ScanQrCodeComponent } from './scan-qr-code/scan-qr-code.component';
     ScanQrCodeComponent
   ],
     imports: [
-        CommonModule,
-        RouterModule,
-        MaterialModule,
-        FlexModule,
-        FormsModule,
-        ReactiveFormsModule,
+      CommonModule,
+      RouterModule,
+      MaterialModule,
+      FlexModule,
+      FormsModule,
+      ReactiveFormsModule,
+      QrCodeModule
     ]
 })
 export class SecureModule { }

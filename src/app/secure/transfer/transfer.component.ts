@@ -27,20 +27,15 @@ export class TransferComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // let search_query: any;
-    // this.route.queryParams.subscribe(
-    //   query => {
-    //     search_query = query.q;
-    //     if (search_query) {
-    //       this.searchedAccount = search_query;
-    //       this.transferForm = new FormGroup({
-    //         account: new FormControl(this.searchedAccount, [Validators.required]),
-    //         amount: new FormControl(null, [Validators.required]),
-    //       });
-    //       return;
-    //     }
-    //   }
-    // );
+    let search_query: any;
+    this.route.queryParams.subscribe(
+      query => {
+        search_query = query.q;
+        if (search_query) {
+          this.searchedResult();
+        }
+      }
+    );
   }
 
   search(searchForm: NgForm): void
@@ -53,27 +48,35 @@ export class TransferComponent implements OnInit {
     this.router.navigate(['/customer/transfers'], {queryParams:  {q: query}})
       .then(result => {
         if (result){
-          this.wallet.searchAccount();
-          this.wallet.searchedAccountSubject
-            .subscribe(
-              (result: any) => {
-                this.isAccountSearched = true;
-                this.searchedAccount = result.email;
-                this.ui.showSnackbar(result.message);
-                this.transferForm = new FormGroup({
-                  account: new FormControl(this.searchedAccount, [Validators.required]),
-                  amount: new FormControl(null, [Validators.required]),
-                });
-
-              },
-              error => {
-                this.isAccountSearched = false;
-              }
-            )
+          this.searchedResult()
         }
-        this.wallet.searchAccount();
       })
       .catch(error => this.ui.showSnackbar('SEARCH COULD NOT BE PROCESSED'));
+  }
+
+  searchedResult() {
+    this.wallet.searchAccount();
+    this.wallet.searchedAccountSubject
+      .subscribe(
+        (result: any) => {
+            console.log(result);
+            if (result.error) {
+              this.isAccountSearched = false;
+              this.searchedAccount = '';
+              return;
+            }
+            this.isAccountSearched = true;
+            this.searchedAccount = result.email;
+            this.ui.showSnackbar(result.message);
+            this.transferForm = new FormGroup({
+              account: new FormControl(this.searchedAccount, [Validators.required]),
+              amount: new FormControl(null, [Validators.required]),
+            });
+        },
+        error => {
+          this.ui.errorFormatter(error);
+        }
+      )
   }
 
 
