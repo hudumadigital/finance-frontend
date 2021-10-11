@@ -1,11 +1,11 @@
 <div>
   <div fxLayoutAlign="center center">
-    <h2>ACCOUNT TRANSFER FORM</h2>
+    <h2>ACCOUNT TRANSFER ACTION</h2>
   </div>
 
   <div class="row">
     <div class="col-12 col-md-3">
-      <h2>Search Account</h2>
+      <h2>SEARCH ACCOUNT: </h2>
     </div>
     <div class="col-12 col-md-9">
       <div class="search-box font-theme">
@@ -13,11 +13,11 @@
               (ngSubmit)="search(searchForm); $event.preventDefault();">
           <label for="search_query"></label>
           <mat-form-field appearance="outline">
-            <mat-label>Receiver Account</mat-label>
+            <mat-label>Receiver account email</mat-label>
             <input (search)="removeFocus($event)"
                    id="search_query" autocomplete="false"
                    spellcheck="false" type="search" matInput aria-label="search" aria-live="polite"
-                   placeholder="Enter receiver account, press enter to search"
+                   placeholder="Enter email and press enter or search"
                    [ngModel]="searchedAccount" name="search_query">
           </mat-form-field>
         </form>
@@ -32,11 +32,11 @@
         <form [formGroup]="transferForm" (ngSubmit)="onSubmitForm()">
           <div class="row">
             <div class="col-12 col-md-3">
-              <h2>Receiver Account</h2>
+              <h2>RECEIVER ACCOUNT</h2>
             </div>
             <div class="col-12 col-md-9">
               <mat-form-field appearance="outline">
-                <mat-label>Receiver Account</mat-label>
+                <mat-label>Receiver account email</mat-label>
                 <input readonly type="text" formControlName="account" matInput
                        placeholder="eg: example@example.com"
                        name="depositAmount" required>

@@ -33,7 +33,7 @@ export class WalletService {
           this.ui.loadingStateChanged.next(false);
           // console.log(result)
           this.ui.showSnackbar(result.message);
-          this.router.navigate(['customer', 'balance']).then(r => {});
+          this.router.navigate(['customer', 'balance']).then(r => { });
         }, error => {
           this.ui.loadingStateChanged.next(false);
           this.ui.errorFormatter(error);
@@ -98,15 +98,15 @@ export class WalletService {
       );
   }
 
-  payBill(billData: any) {
+  payBill(utility: any) {
     this.ui.loadingStateChanged.next(true);
-    this.http.post(`${this.path.bankPath}/bill-summary`, {
-
-    },this.auth.getOptions())
+    this.http.post(`${this.path.bankPath}/bill`, {
+      utility
+    }, this.auth.getOptions())
       .subscribe(
         (result: any) => {
           this.ui.loadingStateChanged.next(false);
-          console.log(result);
+          this.ui.showSnackbar(result.message)
         },
         error => {
           this.ui.loadingStateChanged.next(false);
