@@ -1,1 +1,4 @@
-<p>bill-summary works!</p>
+<p>The bills have been looped without style</p>
+<ul *ngFor="let utility of utilities">
+    <li>{{ utility.bill }} paid for {{ utility.amount }}</li>
+</ul>

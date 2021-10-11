@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {WalletService} from "../../services/wallet.service";
-import {Subscription} from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { WalletService } from "../../services/wallet.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-bill-summary',
@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
 export class BillSummaryComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
+  utilities: any[] = [];
 
   constructor(
     private wallet: WalletService,) { }
@@ -19,8 +20,12 @@ export class BillSummaryComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.wallet.billSummarySubject
         .subscribe(
-          (result: any) =>  {
-            console.log(result);
+          (result: any) => {
+            result.forEach((elem: any) => {
+              this.utilities.push(elem.utility);
+            });
+            console.log(this.utilities);
+            
           }
         )
     );

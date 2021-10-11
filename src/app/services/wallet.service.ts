@@ -121,7 +121,8 @@ export class WalletService {
       .subscribe(
         (result: any) => {
           this.ui.loadingStateChanged.next(false);
-          this.billSummarySubject.next(result);
+          this.billSummarySubject.next(result.utilities);
+          this.ui.showSnackbar(result.message)
         },
         error => {
           this.ui.loadingStateChanged.next(false);
