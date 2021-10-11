@@ -11,7 +11,8 @@ export class PathService {
   authUrl = "https://financetz.herokuapp.com/account";
   bankPath = "https://financetz.herokuapp.com/bank";
 
-  transferPath = '  http://localhost:4200/customer/transfers';
+  // transferPath = '  http://localhost:4200/customer/transfers';
+  transferPath = '  https://finance-africa.web.app//customer/transfers';
 
   constructor() { }
 }
