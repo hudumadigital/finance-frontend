@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/finance-africa",
+    "public": "dist/finance-frontend",
     "ignore": [
       "firebase.json",
       "**/.*",
