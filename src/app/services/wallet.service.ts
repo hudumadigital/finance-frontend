@@ -13,6 +13,7 @@ export class WalletService {
 
   balanceSubject = new Subject();
   searchedAccountSubject = new Subject();
+  billSummarySubject = new Subject();
 
   constructor(
     private ui: UiService,
@@ -32,7 +33,7 @@ export class WalletService {
           this.ui.loadingStateChanged.next(false);
           // console.log(result)
           this.ui.showSnackbar(result.message);
-          this.router.navigate(['customer', 'deposits'])
+          this.router.navigate(['customer', 'balance']).then(r => {});
         }, error => {
           this.ui.loadingStateChanged.next(false);
           this.ui.errorFormatter(error);
@@ -56,7 +57,6 @@ export class WalletService {
           this.ui.errorFormatter(error);
         }
       );
-
   }
 
   transferAmount(transferData: any) {
@@ -92,7 +92,40 @@ export class WalletService {
           this.searchedAccountSubject.next(result);
         },
         error => {
+          this.ui.loadingStateChanged.next(false);
           this.ui.errorFormatter(error)
+        }
+      );
+  }
+
+  payBill(billData: any) {
+    this.ui.loadingStateChanged.next(true);
+    this.http.post(`${this.path.bankPath}/bill-summary`, {
+
+    },this.auth.getOptions())
+      .subscribe(
+        (result: any) => {
+          this.ui.loadingStateChanged.next(false);
+          console.log(result);
+        },
+        error => {
+          this.ui.loadingStateChanged.next(false);
+          this.ui.errorFormatter(error)
+        }
+      );
+  }
+
+  getBillSummary() {
+    this.ui.loadingStateChanged.next(true);
+    this.http.get(`${this.path.bankPath}/bill-summary`, this.auth.getOptions())
+      .subscribe(
+        (result: any) => {
+          this.ui.loadingStateChanged.next(false);
+          this.billSummarySubject.next(result);
+        },
+        error => {
+          this.ui.loadingStateChanged.next(false);
+          this.ui.errorFormatter(error);
         }
       );
   }

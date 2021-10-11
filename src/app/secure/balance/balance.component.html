@@ -20,7 +20,7 @@
     </div>
     <div class="col-12 col-md-9" *ngIf="balanceData">
       <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded">
-        <p>{{ balanceData.primaryBalance | currency: 'TZS' }}</p>
+        <p>TZS {{ balanceData.primaryBalance }}</p>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
     </div>
     <div class="col-12 col-md-9" *ngIf="balanceData">
       <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded">
-        <p>{{ balanceData.agencyBalance | currency: 'TZS' }}</p>
+        <p>TZS {{ balanceData.agencyBalance }}</p>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
     </div>
     <div class="col-12 col-md-9">
       <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded" *ngIf="balanceData">
-        <p>{{ balanceData.totalBalance | currency: 'TZS' }}</p>
+        <p>TZS {{ balanceData.totalBalance }}</p>
       </div>
     </div>
   </div>
