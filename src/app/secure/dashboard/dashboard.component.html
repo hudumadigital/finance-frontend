@@ -13,7 +13,7 @@
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{totalBalance | currency:'TZS'}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">'TZS' {{totalBalance}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
@@ -26,7 +26,7 @@
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{primary | currency:'TZS'}}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">'TZS' {{primary}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
@@ -39,7 +39,7 @@
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">{{agency | currency:'TZS' }}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">'TZS' {{agency }}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
