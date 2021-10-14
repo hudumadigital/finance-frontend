@@ -18,9 +18,9 @@
     <div class="col-12 col-md-3">
       <h3>Primary Account Balance</h3>
     </div>
-    <div class="col-12 col-md-9" *ngIf="balanceData">
+    <div class="col-12 col-md-9" >
       <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded">
-        <p>TZS {{ balanceData.primaryBalance }}</p>
+        <p *ngIf="balanceData">TZS {{ balanceData.primaryBalance }}</p>
       </div>
     </div>
   </div>
@@ -29,9 +29,9 @@
     <div class="col-12 col-md-3">
       <h3>Agency Account Balance</h3>
     </div>
-    <div class="col-12 col-md-9" *ngIf="balanceData">
+    <div class="col-12 col-md-9" >
       <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded">
-        <p>TZS {{ balanceData.agencyBalance }}</p>
+        <p *ngIf="balanceData">TZS {{ balanceData.agencyBalance }}</p>
       </div>
     </div>
   </div>
@@ -41,8 +41,8 @@
       <h3>Total Balance</h3>
     </div>
     <div class="col-12 col-md-9">
-      <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded" *ngIf="balanceData">
-        <p>TZS {{ balanceData.totalBalance }}</p>
+      <div class="shadow-sm bg-secondary bg-opacity-25 p-3 rounded" >
+        <p *ngIf="balanceData">TZS {{ balanceData.totalBalance }}</p>
       </div>
     </div>
   </div>
