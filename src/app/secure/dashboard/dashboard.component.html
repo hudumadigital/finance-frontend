@@ -5,7 +5,7 @@
   <mat-grid-list cols="{{(cardLayout | async)!.columns}}" rowHeight="200px">
     <!--Mini Cards-->
     <div class="mini-cards">
-      <a routerLink="/shop/products/products-list">
+      <a >
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
           <app-dashboard-card title="Total Balance" icon="dollar">
@@ -18,7 +18,7 @@
           </app-dashboard-card>
         </mat-grid-tile>
       </a>
-      <a routerLink="/shop/products/orders">
+      <a>
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
           <app-dashboard-card title="Primary Account Balance" icon="bi-handbag">
@@ -31,7 +31,7 @@
           </app-dashboard-card>
         </mat-grid-tile>
       </a>
-      <a routerLink="/shop/products/sold">
+      <a>
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
           <app-dashboard-card title="Agency Account Balance">
@@ -39,12 +39,12 @@
               <mat-spinner color="warn"></mat-spinner>
             </div>
             <div *ngIf="!loadingState">
-              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">'TZS' {{agency }}</h3>
+              <h3 class="font-theme" style="margin-bottom: 0; font-size: 40px">'TZS' {{agency}}</h3>
             </div>
           </app-dashboard-card>
         </mat-grid-tile>
       </a>
-      <a routerLink="/shop/products/products-list">
+      <a >
         <mat-grid-tile [colspan]="( cardLayout | async )!.miniCard.cols"
                        [rowspan]="( cardLayout | async )!.miniCard.rows">
           <app-dashboard-card title="Transfer(s) Performed">
