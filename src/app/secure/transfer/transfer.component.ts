@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UiService} from "../../services/ui.service";
-import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, NgForm, Validators} from "@angular/forms";
 import {WalletService} from "../../services/wallet.service";
 import {Subscription} from "rxjs";
 
@@ -17,7 +17,7 @@ export class TransferComponent implements OnInit {
   isFormSubmitted = true;
   subscriptions: Subscription[] = [];
   loadingState = false;
-  transferForm: FormGroup = new FormGroup({});
+  transferForm: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
     private router: Router,
@@ -68,9 +68,9 @@ export class TransferComponent implements OnInit {
             this.isAccountSearched = true;
             this.searchedAccount = result.email;
             this.ui.showSnackbar(result.message);
-            this.transferForm = new FormGroup({
-              account: new FormControl(this.searchedAccount, [Validators.required]),
-              amount: new FormControl(null, [Validators.required]),
+            this.transferForm = new UntypedFormGroup({
+              account: new UntypedFormControl(this.searchedAccount, [Validators.required]),
+              amount: new UntypedFormControl(null, [Validators.required]),
             });
         },
         error => {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { UiService } from "../../services/ui.service";
 import { WalletService } from "../../services/wallet.service";
 
@@ -17,9 +17,9 @@ export class BillComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
 
 
-  depositForm: FormGroup = new FormGroup({
-    account: new FormControl(''),
-    amount: new FormControl('')
+  depositForm: UntypedFormGroup = new UntypedFormGroup({
+    account: new UntypedFormControl(''),
+    amount: new UntypedFormControl('')
   });
 
   constructor(
@@ -27,9 +27,9 @@ export class BillComponent implements OnInit, OnDestroy {
     private wallet: WalletService) { }
 
   ngOnInit(): void {
-    this.depositForm = new FormGroup({
-      account: new FormControl(null, [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
+    this.depositForm = new UntypedFormGroup({
+      account: new UntypedFormControl(null, [Validators.required]),
+      amount: new UntypedFormControl(null, [Validators.required]),
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,15 +8,15 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  forgotPasswordForm!: FormGroup;
+  forgotPasswordForm!: UntypedFormGroup;
   isSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,) { }
+    private formBuilder: UntypedFormBuilder,) { }
 
   ngOnInit(): void {
     this.forgotPasswordForm = this.formBuilder.group({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new UntypedFormControl(null, [Validators.required, Validators.email]),
     });
   }
 

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../helpers/must-match.validator";
 import {Customer} from "../../models/customer.model";
 import {UiService} from "../../services/ui.service";
@@ -17,21 +17,21 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   passwordVisible = false;
 
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   isSubmitted = false;
 
   subscriptions: Subscription[] = []
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private ui: UiService,
     private auth: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required]),
+      'email': new UntypedFormControl(null, [Validators.required, Validators.email]),
+      'password': new UntypedFormControl(null, [Validators.required]),
     });
   }
 
